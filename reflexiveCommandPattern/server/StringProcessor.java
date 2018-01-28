@@ -31,7 +31,12 @@ public class StringProcessor implements IStringProcessor {
 
     @Override
     public Integer parseInteger(String str) {
+        try {
             return Integer.parseInt(str);
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
+
 }
 

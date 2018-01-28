@@ -39,8 +39,8 @@ public class StringProcessorProxy implements IStringProcessor {
     public Integer parseInteger(String str) {
         String[] parameterTypenames = {String.class.getName()};
         Object[] parameters = {str};
-        Object result = ClientCommunicator.getInstance().send("parseInteger", parameterTypenames, parameters);
+        Integer result = (Integer) ClientCommunicator.getInstance().send("parseInteger", parameterTypenames, parameters);
         if(result == null) throw new NumberFormatException();
-        return (Integer) result;
+        return result;
     }
 }

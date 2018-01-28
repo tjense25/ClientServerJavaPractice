@@ -63,7 +63,6 @@ public class ServerCommunicator {
 
         @Override
         public void handle(HttpExchange exchange) throws IOException {
-            System.out.println("in command handler");
             try {
                 InputStream reqBody = exchange.getRequestBody();
                 Command command = new Command(new InputStreamReader(reqBody));
@@ -72,7 +71,7 @@ public class ServerCommunicator {
                 exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
                 OutputStream respBody = exchange.getResponseBody();
                 ResultTransferObject resultTransferObject = null;
-                if(result != null && result.equals("NumberFormatException")) {
+                if(result == null) {
                     resultTransferObject = new ResultTransferObject("java.lang.Integer", null);
                 } else {
                     resultTransferObject = new ResultTransferObject(result.getClass().getName(), result);
